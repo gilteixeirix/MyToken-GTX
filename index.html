@@ -1,33 +1,137 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MyToken - Interface</title>
-<!-- Ethers v5 (estável) -->
-<script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <!-- Ethers v5 (estável) -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 
-<!-- OU, se quiser v6 -->
-<!-- <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script> -->
+  <!-- OU, se quiser v6 -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script> -->
 
   <style>
-    :root{font-family:Inter, system-ui, Arial; --bg:#0f1724; --card:#0b1220; --accent:#7c3aed; --muted:#94a3b8; color:#e6eef8}
-    body{margin:0;background:linear-gradient(180deg,#071022 0%, #071733 100%);font-family:Inter, Arial, sans-serif;color:var(--muted);}
-    .wrap{max-width:900px;margin:28px auto;padding:20px}
-    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
-    h1{color:#fff;margin:0;font-size:20px}
-    .card{background:rgba(255,255,255,0.03);border-radius:12px;padding:16px;margin-bottom:12px;box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    :root {
+      font-family: Inter, system-ui, Arial;
+      --bg: #0f1724;
+      --card: #0b1220;
+      --accent: #7c3aed;
+      --muted: #94a3b8;
+      color: #e6eef8
+    }
 
-    label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
-    input[type=text], input[type=number], select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--muted);box-sizing:border-box}
-    button{background:var(--accent);color:#fff;padding:10px 12px;border:none;border-radius:8px;cursor:pointer}
-    .muted{color:var(--muted);font-size:13px}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .small{font-size:13px;color:var(--muted)}
-    pre{white-space:pre-wrap;background:rgba(0,0,0,0.25);padding:8px;border-radius:8px;color:#dcefff}
-    footer{margin-top:16px;text-align:center;color:var(--muted);font-size:13px}
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #071022 0%, #071733 100%);
+      font-family: Inter, Arial, sans-serif;
+      color: var(--muted);
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 28px auto;
+      padding: 20px
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px
+    }
+
+    h1 {
+      color: #fff;
+      margin: 0;
+      font-size: clamp(1.2rem, 2vw, 1.8rem)
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 6px 18px rgba(2, 6, 23, 0.6)
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 6px
+    }
+
+    input[type=text],
+    input[type=number],
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      background: transparent;
+      color: var(--muted);
+      box-sizing: border-box
+    }
+
+    button {
+      background: var(--accent);
+      color: #fff;
+      padding: 10px 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px
+    }
+
+    .small {
+      font-size: 13px;
+      color: var(--muted)
+    }
+
+    pre {
+      white-space: pre-wrap;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 8px;
+      border-radius: 8px;
+      color: #dcefff
+    }
+
+    footer {
+      margin-top: 16px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    @media (max-width: 600px) {
+      .row {
+        grid-template-columns: 1fr;
+      }
+
+      body {
+        padding: 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.4rem;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <header>
@@ -83,7 +187,7 @@
           <input id="toAddr" type="text" placeholder="Endereço destino" />
           <input id="amountTransfer" type="number" placeholder="Quantidade (ex: 1.5)" step="any" />
         </div>
-        <div style="margin-top:8px;display:flex;gap:8px">
+        <div style="margin-top:8px;" display:flex"] { flex-wrap: wrap;">
           <button id="transferBtn">Enviar</button>
           <button id="refreshBalBtn">Atualizar Saldo</button>
         </div>
@@ -106,7 +210,7 @@
           <input id="mintTo" type="text" placeholder="Endereço que receberá" />
           <input id="mintAmount" type="number" placeholder="Quantidade (ex: 100)" step="any" />
         </div>
-        <div style="margin-top:8px;display:flex;gap:8px">
+        <div style="margin-top:8px;" display:flex"] { flex-wrap: wrap;">
           <button id="mintBtn">Mintar</button>
           <button id="checkOwnerBtn">Verificar owner</button>
         </div>
@@ -114,16 +218,18 @@
 
       <div style="margin-bottom:12px">
         <label>Pause / Unpause (somente owner)</label>
-        <div style="display:flex;gap:8px">
+        <div style="" display:flex"] { flex-wrap: wrap;">
           <button id="pauseBtn">Pausar</button>
           <button id="unpauseBtn">Despausar</button>
-          <div style="align-self:center;color:var(--muted);margin-left:8px">Estado: <span id="pausedState">-</span></div>
+          <div style="align-self:center;color:var(--muted);margin-left:8px">Estado: <span id="pausedState">-</span>
+          </div>
         </div>
       </div>
 
     </section>
 
-    <footer class="muted">Obs: converta valores para as unidades mínimas com base em <code>decimals()</code>. A interface faz a conversão automaticamente.</footer>
+    <footer class="muted">Obs: converta valores para as unidades mínimas com base em <code>decimals()</code>. A
+      interface faz a conversão automaticamente.</footer>
   </div>
 
   <script>
@@ -186,22 +292,22 @@
         document.getElementById('network').textContent = network.name + ' (chainId: ' + network.chainId + ')';
 
         const [name, symbol, dec, total, paused, ownerAddr] = await Promise.all([
-          contract.name().catch(()=>"-"),
-          contract.symbol().catch(()=>"-"),
-          contract.decimals().catch(()=>18),
-          contract.totalSupply().catch(()=>0),
-          contract.paused().catch(()=>false),
-          contract.owner().catch(()=>null),
+          contract.name().catch(() => "-"),
+          contract.symbol().catch(() => "-"),
+          contract.decimals().catch(() => 18),
+          contract.totalSupply().catch(() => 0),
+          contract.paused().catch(() => false),
+          contract.owner().catch(() => null),
         ]);
         decimalsVal = Number(dec);
         document.getElementById('meta').textContent = `${name} / ${symbol} / decimals: ${decimalsVal}`;
         document.getElementById('supply').textContent = formatUnits(total, decimalsVal) + ' ' + symbol;
         document.getElementById('pausedState').textContent = paused ? 'PAUSADO' : 'ATIVO';
-        document.getElementById('status').textContent = 'Contrato carregado. Owner: ' + (ownerAddr||'-');
+        document.getElementById('status').textContent = 'Contrato carregado. Owner: ' + (ownerAddr || '-');
 
         await refreshBalance();
       } catch (err) {
-        status('Erro ao carregar dados do contrato: ' + (err.message||err));
+        status('Erro ao carregar dados do contrato: ' + (err.message || err));
       }
     }
 
@@ -212,7 +318,7 @@
         document.getElementById('balance').textContent = formatUnits(bal, decimalsVal);
         status('Saldo atualizado');
       } catch (err) {
-        status('Erro ao buscar saldo: ' + (err.message||err));
+        status('Erro ao buscar saldo: ' + (err.message || err));
       }
     }
 
@@ -231,7 +337,7 @@
         status('Transferência confirmada.');
         await refreshBalance();
       } catch (err) {
-        status('Erro na transferência: ' + (err.message||err));
+        status('Erro na transferência: ' + (err.message || err));
       }
     }
 
@@ -246,7 +352,7 @@
         status('Queima confirmada.');
         await refreshBalance();
       } catch (err) {
-        status('Erro no burn: ' + (err.message||err));
+        status('Erro no burn: ' + (err.message || err));
       }
     }
 
@@ -262,7 +368,7 @@
         await tx.wait();
         status('Mint confirmada.');
       } catch (err) {
-        status('Erro no mint: ' + (err.message||err));
+        status('Erro no mint: ' + (err.message || err));
       }
     }
 
@@ -270,7 +376,7 @@
       try {
         const ownerAddr = await contract.owner();
         status('Owner: ' + ownerAddr);
-      } catch (err) { status('Erro: ' + (err.message||err)); }
+      } catch (err) { status('Erro: ' + (err.message || err)); }
     }
 
     document.getElementById('pauseBtn').onclick = async () => {
@@ -280,7 +386,7 @@
         await tx.wait();
         status('Contrato pausado.');
         document.getElementById('pausedState').textContent = 'PAUSADO';
-      } catch (err) { status('Erro ao pausar: ' + (err.message||err)); }
+      } catch (err) { status('Erro ao pausar: ' + (err.message || err)); }
     }
     document.getElementById('unpauseBtn').onclick = async () => {
       try {
@@ -289,29 +395,29 @@
         await tx.wait();
         status('Contrato despausado.');
         document.getElementById('pausedState').textContent = 'ATIVO';
-      } catch (err) { status('Erro ao despausar: ' + (err.message||err)); }
+      } catch (err) { status('Erro ao despausar: ' + (err.message || err)); }
     }
 
-    function status(msg){
+    function status(msg) {
       statusEl.textContent = msg;
       console.log(msg);
     }
 
-    function shorten(addr){ return addr ? addr.substr(0,6) + '...' + addr.substr(-4) : '' }
+    function shorten(addr) { return addr ? addr.substr(0, 6) + '...' + addr.substr(-4) : '' }
 
-    function parseUnits(amount, dec){
+    function parseUnits(amount, dec) {
       try { return ethers.utils.parseUnits(String(amount), dec); }
-      catch(e){ return ethers.BigNumber.from(String(Math.floor(Number(amount) * (10**dec)))); }
+      catch (e) { return ethers.BigNumber.from(String(Math.floor(Number(amount) * (10 ** dec)))); }
     }
-    function formatUnits(bn, dec){
-      try { return ethers.utils.formatUnits(bn, dec); } catch(e){ return String(bn); }
+    function formatUnits(bn, dec) {
+      try { return ethers.utils.formatUnits(bn, dec); } catch (e) { return String(bn); }
     }
 
-    function handleAccountsChanged(accounts){
+    function handleAccountsChanged(accounts) {
       if (accounts.length === 0) { mmStatus.textContent = 'desconectado'; status('Conta desconectada'); }
       else { mmStatus.textContent = accounts[0]; status('Conta alterada: ' + shorten(accounts[0])); }
     }
-    function handleChainChanged(chainId){
+    function handleChainChanged(chainId) {
       status('Chain changed: ' + chainId);
       // opcional: recarregar página para reconectar provider
     }
@@ -324,4 +430,5 @@
     }
   </script>
 </body>
+
 </html>
