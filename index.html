@@ -360,7 +360,7 @@
       const to = document.getElementById('mintTo').value.trim();
       const amount = document.getElementById('mintAmount').value;
       if (!ethers.utils.isAddress(to)) { alert('Endereço inválido'); return; }
-      if (contract.owner() != contract.ownerAddr)  { alert('Apenas o owner pode executar".'); return; }
+      if (contract.ownerAddr() != signer)  { alert('Apenas o owner pode executar".'); return; }
       
       if (!amount || Number(amount) <= 0) { alert('Quantidade inválida'); return; }
       try {
