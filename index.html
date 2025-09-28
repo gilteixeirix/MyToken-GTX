@@ -135,15 +135,17 @@
 <body>
   <div class="wrap">
     <header>
-      <h1>MyToken (GTX) — Interface MetaMask</h1>
+      <h1>MyToken (GTX) — ERC20</h1>
+      <button id="connectBtn">Conectar MetaMask</button>
       <div id="wallet-area" class="muted">MetaMask: <span id="mm-status">desconectado</span></div>
     </header>
 
     <section class="card">
       <label for="contractAddr">Endereço do contrato</label>
-      <input id="contractAddr" type="text" placeholder="0x... (cole aqui o endereço do contrato)" style="width:400px;" />
+      <input id="contractAddr" type="text" placeholder="0x... (cole aqui o endereço do contrato)"
+        style="width:400px;" />
       <div style="margin-top:10px;display:flex;gap:8px">
-        <button id="connectBtn">Conectar MetaMask</button>
+
         <button id="loadBtn">Carregar contrato</button>
       </div>
       <p class="small">No campo abaixo você pode ver mensagens de status.</p>
@@ -361,7 +363,7 @@
       const amount = document.getElementById('mintAmount').value;
       if (!ethers.utils.isAddress(to)) { alert('Endereço inválido'); return; }
 
-      
+
       if (!amount || Number(amount) <= 0) { alert('Quantidade inválida'); return; }
       try {
         const amt = parseUnits(amount, decimalsVal);
